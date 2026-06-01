@@ -70,13 +70,26 @@ print("\nAfter update:",student)
 
 greater_score = [score for score in student['scores'] if (score >=80)]
 print("greaater_score",greater_score)
-# College Dictionary
-
-college = {
-    "name" : "Shahid Smarak College",
-    "faculty" : ["BCA", "BBS", "BSW"],
-    "adress" : "Kirtipur",
 
 
+#Conditional statemensts
+# Function to determine grade based on score
 
-}
+def get_grade(score):
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return 'B'
+    elif score >= 70:
+        return 'C'
+    elif score >= 60:
+        return 'D'
+    else:
+        return 'F'
+    
+# TEST THE FUNCTION
+test_scores = [95,85,75,65,55]
+for score in test_scores:
+    grade = get_grade(score)
+    print("Scores:",score,"->Grade:",grade)
+    
