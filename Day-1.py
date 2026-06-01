@@ -52,3 +52,7 @@ print("After removing Eva:",student_name)
 student_score = [85,67,95,50]
 passing_score = [score for score in student_score if score >=80]
 print("/Passing scores (>=80):", passing_score)
+
+
+
+
