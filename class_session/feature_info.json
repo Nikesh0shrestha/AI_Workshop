@@ -1,0 +1,28 @@
+{
+  "feature_columns": [
+    "hours_studied",
+    "previous_score",
+    "attendance",
+    "sleep_hours",
+    "extracurricular_encoded",
+    "internet_access_encoded",
+    "parent_education_encoded"
+  ],
+  "target_column": "final_score",
+  "categorical_mappings": {
+    "extracurricular": {
+      "No": 0,
+      "yes":1
+    },
+    "Internet-access":{
+      "No": 0,
+      "yes":1
+    },
+    "parent_education":{
+      "High_school":0,
+      "Bachelors": 1,
+      "Master": 1,
+      "PHD" : 1
+    }
+  }
+}
