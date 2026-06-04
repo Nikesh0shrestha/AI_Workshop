@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Form</title>
+
+    <style>
+        .sf-wrap { padding: 2rem 0; }
+        .sf-card {
+            background: var(--color-background-primary);
+            border: 0.5px solid var(--color-border-tertiary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .sf-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.75rem; }
+        .sf-icon-wrap {
+            width: 40px; height: 40px; border-radius: var(--border-radius-md);
+            background: var(--color-background-info); display: flex; align-items: center; justify-content: center;
+        }
+        .sf-icon-wrap i { font-size: 20px; color: var(--color-text-info); }
+        .sf-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin: 0; }
+        .sf-sub { font-size: 13px; color: var(--color-text-secondary); margin: 2px 0 0; }
+
+        .sf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .sf-group { display: flex; flex-direction: column; gap: 5px; }
+        .sf-group.full { grid-column: 1 / -1; }
+        .sf-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); display: flex; align-items: center; gap: 5px; }
+        .sf-label i { font-size: 14px; }
+
+        .sf-divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.25rem 0; }
+
+        .sf-section-label {
+            font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+            color: var(--color-text-tertiary); text-transform: uppercase;
+            margin-bottom: 0.75rem; grid-column: 1 / -1;
+        }
+
+        .sf-submit {
+            width: 100%; margin-top: 1.5rem; padding: 11px;
+            background: var(--color-text-primary); color: var(--color-background-primary);
+            border: none; border-radius: var(--border-radius-md);
+            font-size: 14px; font-weight: 500; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: opacity 0.15s;
+        }
+        .sf-submit:hover { opacity: 0.85; }
+        .sf-submit i { font-size: 16px; }
+
+        .sf-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: var(--color-background-success); color: var(--color-text-success);
+            font-size: 11px; font-weight: 500; padding: 2px 8px;
+            border-radius: 20px; margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sf-wrap">
+    <div class="sf-card">
+        <h2 class="sr-only">Student Information Form for performance tracking</h2>
+
+        <div class="sf-header">
+        <div class="sf-icon-wrap"><i class="ti ti-school" aria-hidden="true"></i></div>
+        <div>
+            <p class="sf-title">Student information</p>
+            <p class="sf-sub">Fill in all fields to submit performance data</p>
+        </div>
+        <span class="sf-badge"><i class="ti ti-lock" style="font-size:11px" aria-hidden="true"></i> Secure</span>
+        </div>
+
+        <div class="sf-grid">
+        <div class="sf-section-label">Personal</div>
+
+        <div class="sf-group full">
+            <label class="sf-label" for="sname">
+            <i class="ti ti-user" aria-hidden="true"></i> Student name
+            </label>
+            <input type="text" id="sname" name="student_name" placeholder="Full name" required>
+        </div>
+
+        <div class="sf-section-label" style="margin-top:0.5rem;">Academic</div>
+
+        <div class="sf-group">
+            <label class="sf-label" for="hstudy">
+            <i class="ti ti-clock" aria-hidden="true"></i> Hours studied
+            </label>
+            <input type="number" id="hstudy" name="hours_studied" step="0.1" min="0" placeholder="e.g. 4.5" required>
+        </div>
+
+        <div class="sf-group">
+            <label class="sf-label" for="pscore">
+            <i class="ti ti-chart-bar" aria-hidden="true"></i> Previous score
+            </label>
+            <input type="number" id="pscore" name="previous_score" min="0" max="100" placeholder="0 – 100" required>
+        </div>
+
+        <div class="sf-group">
+            <label class="sf-label" for="attend">
+            <i class="ti ti-calendar-check" aria-hidden="true"></i> Attendance (%)
+            </label>
+            <input type="number" id="attend" name="attendance" min="0" max="100" placeholder="0 – 100" required>
+        </div>
+
+        <div class="sf-group">
+            <label class="sf-label" for="sleep">
+            <i class="ti ti-moon" aria-hidden="true"></i> Sleep hours
+            </label>
+            <input type="number" id="sleep" name="sleep_hours" step="0.1" min="0" placeholder="e.g. 7.5" required>
+        </div>
+
+        <div class="sf-section-label" style="margin-top:0.5rem;">Background</div>
+
+        <div class="sf-group">
+            <label class="sf-label" for="extra">
+            <i class="ti ti-activity" aria-hidden="true"></i> Extracurricular
+            </label>
+            <select id="extra" name="extracurricular" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            </select>
+        </div>
+
+        <div class="sf-group">
+            <label class="sf-label" for="paredu">
+            <i class="ti ti-certificate" aria-hidden="true"></i> Parent education
+            </label>
+            <select id="paredu" name="parent_education" required>
+            <option value="" disabled selected>Select level</option>
+            <option value="High School">High school</option>
+            <option value="Bachelor">Bachelor's</option>
+            <option value="Master">Master's</option>
+            <option value="PhD">PhD</option>
+            </select>
+        </div>
+        </div>
+
+        <button class="sf-submit" onclick="handleSubmit()">
+        <i class="ti ti-send" aria-hidden="true"></i> Submit student data
+        </button>
+    </div>
+    </div>
+
+    <script>
+    function handleSubmit() {
+    const fields = ['sname','hstudy','pscore','attend','sleep','extra','paredu'];
+    const labels = ['Student name','Hours studied','Previous score','Attendance','Sleep hours','Extracurricular','Parent education'];
+    for (let i = 0; i < fields.length; i++) {
+        const el = document.getElementById(fields[i]);
+        if (!el.value) {
+        el.style.borderColor = 'var(--color-border-danger)';
+        el.focus();
+        return;
+        } else {
+        el.style.borderColor = '';
+        }
+    }
+    sendPrompt('The student form has been filled and submitted. The data is: Name=' + document.getElementById('sname').value + ', Hours studied=' + document.getElementById('hstudy').value + ', Previous score=' + document.getElementById('pscore').value + ', Attendance=' + document.getElementById('attend').value + '%, Sleep hours=' + document.getElementById('sleep').value + ', Extracurricular=' + document.getElementById('extra').value + ', Parent education=' + document.getElementById('paredu').value);
+    }
+    </script>
+</body>
+</html>

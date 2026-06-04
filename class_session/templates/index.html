@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Performance Predictor</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg, #667eea, #764ba2);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .container{
+            background:white;
+            width:500px;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align:center;
+            color:#333;
+            margin-bottom:10px;
+        }
+
+        p{
+            text-align:center;
+            color:#666;
+            margin-bottom:25px;
+        }
+
+        .form-group{
+            margin-bottom:15px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:5px;
+            font-weight:bold;
+            color:#444;
+        }
+
+        input,
+        select{
+            width:100%;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:14px;
+        }
+
+        input:focus,
+        select:focus{
+            outline:none;
+            border-color:#667eea;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#667eea;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        button:hover{
+            background:#5563d6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎓 Student Performance Predictor</h1>
+    <p>Enter Student Details</p>
+
+    <form action="/predict" method="POST">
+
+        <div class="form-group">
+            <label>Hours Studied</label>
+            <input type="number" name="hours_studied" min="1" max="15" required>
+        </div>
+
+        <div class="form-group">
+            <label>Previous Score</label>
+            <input type="number" name="previous_score" min="0" max="100" required>
+        </div>
+
+        <div class="form-group">
+            <label>Attendance (%)</label>
+            <input type="number" name="attendance" min="0" max="100" required>
+        </div>
+
+        <div class="form-group">
+            <label>Sleep Hours</label>
+            <input type="number" step="0.1" name="sleep_hours" min="1" max="12" required>
+        </div>
+
+        <div class="form-group">
+            <label>Extracurricular Activities</label>
+            <select name="extracurricular">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Parent Education</label>
+            <select name="parent_education">
+                <option value="High School">High School</option>
+                <option value="Bachelor">Bachelor</option>
+                <option value="Master">Master</option>
+                <option value="PhD">PhD</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Internet Access</label>
+            <select name="internet_access">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+
+        <button type="submit">Predict Final Score</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
