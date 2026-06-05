@@ -2,6 +2,10 @@
 
 # 1. Import Flask
 from flask import Flask, render_template, request
+import pickle
+import numpy as np 
+import os
+
 
 
 # dummy data 
@@ -15,6 +19,18 @@ topics = [
 ]
 # 2. Create the app
 app = Flask(__name__)
+
+
+# MODEL_PATH = "simple_student_model_all.pkl" 
+# if os.path.exists(MODEL_PATH): 
+#     with open(MODEL_PATH, "rb") as f: 
+#         # pickle.dump(model,f)
+#         model = pickle.load(f) 
+#         print("✅ Model Loaded Successfully!") 
+#         print(type(model)) 
+# else: 
+#     raise FileNotFoundError( f"❌ {MODEL_PATH} not found!" )
+
 
 # 3. Homepage route
 @app.route('/')
@@ -87,7 +103,21 @@ def predict():
 
     parent_bonus = education_bonus.get(parent_education, 0)
 
+
+    # features = np.array([[ hours_studied, 
+    #                       attendance, 
+    #                       previous_score, 
+    #                       sleep_hours, 
+    #                       extracurricular, 
+    #                       parent_education, 
+    #                       internet_access ]])
     # Prediction Formula
+
+    # prediction = model.predict(features)[0] 
+    # prediction = max(0, min(100, prediction)) 
+    # prediction = round(prediction, 2)
+
+
     predicted_score = (
         hours_studied * 2.5 +
         previous_score * 0.5 +
@@ -102,12 +132,100 @@ def predict():
     predicted_score = max(0, min(100, predicted_score))
 
     return f"""
-    <h1>Prediction Result</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
 
-    <h2>Predicted Final Score: {predicted_score:.2f}</h2>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }}
 
-    <a href="/">Predict Another Student</a>
-    """
+        body {{
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }}
+
+        .card {{
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 450px;
+        }}
+
+        .emoji {{
+            font-size: 60px;
+            margin-bottom: 15px;
+        }}
+
+        h1 {{
+            color: #333;
+            margin-bottom: 20px;
+        }}
+
+        .score {{
+            font-size: 55px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }}
+
+        .message {{
+            color: #666;
+            margin-bottom: 25px;
+        }}
+
+        .btn {{
+            display: inline-block;
+            text-decoration: none;
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: 0.3s;
+        }}
+
+        .btn:hover {{
+            background: #4f5bd5;
+        }}
+    </style>
+
+</head>
+<body>
+
+    <div class="card">
+
+        <div class="emoji">🎓</div>
+
+        <h1>Prediction Result</h1>
+
+        <div class="score">
+            {predicted_score:.2f}
+        </div>
+
+        <p class="message">
+            Estimated Final Student Score
+        </p>
+
+        <a href="/" class="btn">
+            Predict Another Student
+        </a>
+
+    </div>
+
+</body>
+</html>
+"""
 
 
 # 6. Run the server
